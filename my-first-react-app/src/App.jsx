@@ -1,12 +1,14 @@
-const user = {
-  name: 'Piero Arturo',
-  role: 'Software Engineer',
-  imageUrl: 'https://i.imgur.com/4mUoNi8.png',
-  description: 'Passionate about clean code, creative solutions, and React wizardry.',
-};
+const animals = ['perro', 'gato', 'ave', 'raton'];
 
-export default function ProfileCard() {
+const animalList = animals.map( (str) => { return <li>{str}</li>})
+
+export default function List(){
   return (
-    <h1>Pol Kbrazo</h1>
-  )
+    <>
+      <h1>Animal List:</h1>
+      <ul>
+        {animalList}
+      </ul>
+    </>
+  );
 }
