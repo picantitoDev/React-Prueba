@@ -7,6 +7,6 @@ const user = {
 
 export default function ProfileCard() {
   return (
-    <h1>Commit from Linux Mint!</h1>
+    <h1>Pol Kbrazo</h1>
   )
 }
