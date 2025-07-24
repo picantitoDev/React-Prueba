@@ -5,7 +5,7 @@ function StudentItem(props){
 function StudentList(props){
   return(
     <ul>
-      {props.students.map((student) => { return <StudentItem key={student.nombre} nombre={student.nombre} edad={student.edad}></StudentItem>})}
+      {props.students.map((student) => { return <StudentItem key={student.nombre} {...student}></StudentItem>})}
     </ul>
   )
 }
