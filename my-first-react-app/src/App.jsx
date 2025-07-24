@@ -1,24 +1,27 @@
-function ListItem(props){
-  return <li>{props.animal}</li>
+function StudentItem(props){
+  return <li><p> Name: {props.nombre}, Edad: {props.edad}</p></li>
 }
 
-function List(props){
+function StudentList(props){
   return(
     <ul>
-      {props.animals.map((animal) => {
-        return <ListItem key={animal} animal={animal}></ListItem>
-      })}
+      {props.students.map((student) => { return <StudentItem key={student.nombre} nombre={student.nombre} edad={student.edad}></StudentItem>})}
     </ul>
-  );
+  )
 }
 
-
 export default function App(){
-  const animals = ['ave', 'perro', 'gato', 'liebre', 'pez']
-  return (
+  const students = [
+    { nombre: "Juan", edad: 20 },
+    { nombre: "Ana", edad: 22 },
+    { nombre: "Luis", edad: 19 },
+    { nombre: "María", edad: 21 }
+  ];
+
+  return(
     <>
-      <h1>Animal List:</h1>
-      <List animals={animals}></List>
+      <h1>Student List</h1>
+      <StudentList students={students}></StudentList>
     </>
-  );
+  )
 }
