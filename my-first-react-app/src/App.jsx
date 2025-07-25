@@ -1,27 +1,29 @@
-function StudentItem(props){
-  return <li><p> Name: {props.nombre}, Edad: {props.edad}</p></li>
-}
+import { recipes } from './data.js';
 
-function StudentList(props){
-  return(
-    <ul>
-      {props.students.map((student) => { return <StudentItem key={student.nombre} {...student}></StudentItem>})}
-    </ul>
-  )
-}
-
-export default function App(){
-  const students = [
-    { nombre: "Juan", edad: 20 },
-    { nombre: "Ana", edad: 22 },
-    { nombre: "Luis", edad: 19 },
-    { nombre: "María", edad: 21 }
-  ];
-
+function Recipe(props){
   return(
     <>
-      <h1>Student List</h1>
-      <StudentList students={students}></StudentList>
+      <div key={props.recipe.id}>
+          <h2>{props.recipe.name}</h2>
+          <ul>
+            {props.recipe.ingredients.map(ingredient =>
+              <li key={ingredient}>
+                {ingredient}
+              </li>
+            )}
+          </ul>
+        </div>
     </>
   )
+}
+
+export default function RecipeList() {
+  return (
+    <div>
+      <h1>Recipes</h1>
+      {recipes.map(recipe =>
+          <Recipe recipe={recipe}></Recipe>
+      )}
+    </div>
+  );
 }
