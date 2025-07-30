@@ -1,16 +1,18 @@
-function Box({children, styles}){
-  return (
-    <div style={styles}>{children}</div>
+
+function CounterButton(props){
+  return(
+    <button onClick={props.callback}>Contador</button>
   )
 }
 
 export default function App(){
+  const callback = function(){
+    window.alert("Hello World!")
+  }
+
   return(
     <>
-    <Box styles={{border: '2px solid red', padding: '1rem', fontSize: '24px', textAlign: 'center'}}>
-        <p>Todo se va a la gran pucta</p>
-        <small>onioooo</small>
-    </Box>
+      <CounterButton callback={callback}></CounterButton>
     </>
   )
 }
