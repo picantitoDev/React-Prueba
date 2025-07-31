@@ -1,18 +1,22 @@
+import React, { useState } from "react";
+import "./App.css";
 
-function CounterButton(props){
-  return(
-    <button onClick={props.callback}>Contador</button>
-  )
-}
+const COLORS = ["pink", "green", "blue", "yellow", "purple"];
 
-export default function App(){
-  const callback = function(){
-    window.alert("Hello World!")
+export default function App() {
+  const [backgroundColor, setBackgroundColor] = useState(COLORS[0]);
+
+  const onButtonClick = (color) => () => {
+    setBackgroundColor(color)
   }
 
-  return(
-    <>
-      <CounterButton callback={callback}></CounterButton>
-    </>
+  return (
+    <div className="App" style={{ backgroundColor: backgroundColor, }}>
+      {COLORS.map((color) => (
+        <button type="button" key={color} onClick={onButtonClick(color)} className={backgroundColor === color ? 'selected' : ''}>
+          {color}
+        </button>
+      ))}
+    </div>
   )
 }
