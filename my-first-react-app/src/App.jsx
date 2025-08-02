@@ -5,7 +5,6 @@ export default function App(){
   const COLORES = ['red', 'green', 'blue']
 
   const [ backgroundColor, setBackgroundColor ] = useState(COLORES[0])  
-  const [ borderColor, setBorderColor ] = useState(COLORES[0])
 
   const changeColor = (color) => {
     setBackgroundColor(color)
@@ -17,7 +16,6 @@ export default function App(){
 
   const display = (color) => {
     changeColor(color)
-    changeBorderColor(color)
   }
 
   const currentIndex = COLORES.indexOf(backgroundColor)
