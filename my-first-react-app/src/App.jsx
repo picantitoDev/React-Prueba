@@ -21,6 +21,7 @@ export default function App() {
       }}
     >
       <h1>Selector de Colores</h1>
+      <h2>Color actual : {backgroundColor}</h2>
       <div className="button-group">
         {COLORES.map((color, index) => (
           <button
@@ -35,8 +36,8 @@ export default function App() {
               backgroundColor: color,
               border:
                 index === currentIndex
-                  ? "3px solid black"
-                  : "2px solid transparent",
+                  ? "1px solid black"
+                  : "1px solid transparent",
               color: "white",
             }}
           >
