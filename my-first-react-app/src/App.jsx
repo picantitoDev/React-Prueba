@@ -3,25 +3,30 @@ import "./App.css";
 
 const COLORES = ["red", "green", "blue", "pink", "yellow"];
 
+/**
+ * Botón individual para seleccionar color.
+ * @param {{ color: string, index: number, isSelected: boolean, onSelect: (index: number) => void }}
+ */
 const ColorButton = ({ color, index, isSelected, onSelect }) => (
   <button
     onClick={() => onSelect(index)}
     className={`color-button ${isSelected ? "selected" : ""}`}
     aria-label={`Cambiar fondo a color ${color}`}
-    tabIndex={0}
     style={{
       backgroundColor: color,
-      border: isSelected ? "3px solid #333" : "2px solid transparent",
+      border: isSelected ? "3px solid #fff" : "2px solid transparent",
       color: "#fff",
-      padding: "0.5rem 1rem",
+      padding: "0.5rem 1.25rem",
       margin: "0.25rem",
       borderRadius: "8px",
       cursor: "pointer",
-      boxShadow: isSelected ? "0 0 10px rgba(0,0,0,0.3)" : "none",
+      boxShadow: isSelected ? "0 0 12px rgba(0,0,0,0.4)" : "none",
       transition: "all 0.3s ease",
+      fontWeight: "bold",
+      textTransform: "capitalize",
     }}
   >
-    {color.charAt(0).toUpperCase() + color.slice(1)}
+    {color}
   </button>
 );
 
@@ -45,46 +50,33 @@ export default function App() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        padding: "2rem",
       }}
     >
-<<<<<<< HEAD
-      <h1>Selector de Colores</h1>
-      <h2>Color actual : {backgroundColor}</h2>
-      <div className="button-group">
-=======
-      <h1 style={{ color: "#fff", textShadow: "1px 1px 4px rgba(0,0,0,0.4)" }}>
+      <h1 style={{ color: "#fff", textShadow: "1px 1px 4px rgba(0,0,0,0.5)" }}>
         Selector de Colores
       </h1>
-      <div className="button-group" style={{ display: "flex", flexWrap: "wrap" }}>
->>>>>>> 6b91a36fe73385cd2feace45f1f39dcccad692f6
+      <p style={{ color: "#fff", marginBottom: "1.5rem", fontSize: "1.2rem" }}>
+        Color actual: <strong>{backgroundColor}</strong>
+      </p>
+
+      <div
+        className="button-group"
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "0.5rem",
+        }}
+      >
         {COLORES.map((color, index) => (
           <ColorButton
             key={color}
-<<<<<<< HEAD
-            onClick={() => setCurrentIndex(index)}
-            className={`color-button ${
-              currentIndex === index ? "selected" : ""
-            }`}
-            aria-label={`Cambiar fondo a color ${color}`}
-            tabIndex={0}
-            style={{
-              backgroundColor: color,
-              border:
-                index === currentIndex
-                  ? "1px solid black"
-                  : "1px solid transparent",
-              color: "white",
-            }}
-          >
-            {color.charAt(0).toUpperCase() + color.slice(1)}
-          </button>
-=======
             color={color}
             index={index}
             isSelected={currentIndex === index}
             onSelect={handleSelect}
           />
->>>>>>> 6b91a36fe73385cd2feace45f1f39dcccad692f6
         ))}
       </div>
     </div>
