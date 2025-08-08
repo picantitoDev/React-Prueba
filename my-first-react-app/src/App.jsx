@@ -1,34 +1,46 @@
 import React, { useState, useCallback } from "react";
 import "./App.css";
 
-const COLORES = ["red", "green", "blue", "pink", "yellow"];
+const COLORES = [
+  { name: "red" },
+  { name: "green" },
+  { name: "blue" },
+  { name: "pink" },
+  { name: "yellow" },
+];
 
 /**
  * Botón individual para seleccionar color.
  * @param {{ color: string, index: number, isSelected: boolean, onSelect: (index: number) => void }}
  */
-const ColorButton = ({ color, index, isSelected, onSelect }) => (
-  <button
-    onClick={() => onSelect(index)}
-    className={`color-button ${isSelected ? "selected" : ""}`}
-    aria-label={`Cambiar fondo a color ${color}`}
-    style={{
-      backgroundColor: color,
-      border: isSelected ? "3px solid #fff" : "2px solid transparent",
-      color: "#fff",
-      padding: "0.5rem 1.25rem",
-      margin: "0.25rem",
-      borderRadius: "8px",
-      cursor: "pointer",
-      boxShadow: isSelected ? "0 0 12px rgba(0,0,0,0.4)" : "none",
-      transition: "all 0.3s ease",
-      fontWeight: "bold",
-      textTransform: "capitalize",
-    }}
-  >
-    {color}
-  </button>
-);
+const ColorButton = ({ color, index, isSelected, onSelect }) => {
+  const baseStyle = {
+    backgroundColor: color,
+    border: isSelected ? "3px solid #fff" : "2px solid transparent",
+    color: "#fff",
+    padding: "0.5rem 1.25rem",
+    margin: "0.25rem",
+    borderRadius: "8px",
+    cursor: "pointer",
+    boxShadow: isSelected ? "0 0 12px rgba(0,0,0,0.4)" : "none",
+    transition: "all 0.3s ease",
+    fontWeight: "bold",
+    textTransform: "capitalize",
+  };
+
+  return (
+    <button
+      onClick={() => onSelect(index)}
+      className="color-button"
+      aria-label={`Seleccionar color ${color}`}
+      aria-pressed={isSelected}
+      role="radio"
+      style={baseStyle}
+    >
+      {color}
+    </button>
+  );
+};
 
 export default function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -37,7 +49,7 @@ export default function App() {
     setCurrentIndex(index);
   }, []);
 
-  const backgroundColor = COLORES[currentIndex];
+  const backgroundColor = COLORES[currentIndex].name;
 
   return (
     <div
@@ -62,6 +74,8 @@ export default function App() {
 
       <div
         className="button-group"
+        role="radiogroup"
+        aria-label="Selector de color"
         style={{
           display: "flex",
           flexWrap: "wrap",
@@ -69,10 +83,10 @@ export default function App() {
           gap: "0.5rem",
         }}
       >
-        {COLORES.map((color, index) => (
+        {COLORES.map((colorObj, index) => (
           <ColorButton
-            key={color}
-            color={color}
+            key={colorObj.name}
+            color={colorObj.name}
             index={index}
             isSelected={currentIndex === index}
             onSelect={handleSelect}
