@@ -47,44 +47,20 @@ export default function App() {
         justifyContent: "center",
       }}
     >
-<<<<<<< HEAD
-      <h1>Selector de Colores</h1>
-      <h2>Color actual : {backgroundColor}</h2>
-      <div className="button-group">
-=======
       <h1 style={{ color: "#fff", textShadow: "1px 1px 4px rgba(0,0,0,0.4)" }}>
         Selector de Colores
       </h1>
+      <h2 style={{ color: "#fff" }}>Color actual: {backgroundColor}</h2>
+
       <div className="button-group" style={{ display: "flex", flexWrap: "wrap" }}>
->>>>>>> 6b91a36fe73385cd2feace45f1f39dcccad692f6
         {COLORES.map((color, index) => (
           <ColorButton
             key={color}
-<<<<<<< HEAD
-            onClick={() => setCurrentIndex(index)}
-            className={`color-button ${
-              currentIndex === index ? "selected" : ""
-            }`}
-            aria-label={`Cambiar fondo a color ${color}`}
-            tabIndex={0}
-            style={{
-              backgroundColor: color,
-              border:
-                index === currentIndex
-                  ? "1px solid black"
-                  : "1px solid transparent",
-              color: "white",
-            }}
-          >
-            {color.charAt(0).toUpperCase() + color.slice(1)}
-          </button>
-=======
             color={color}
             index={index}
             isSelected={currentIndex === index}
             onSelect={handleSelect}
           />
->>>>>>> 6b91a36fe73385cd2feace45f1f39dcccad692f6
         ))}
       </div>
     </div>
