@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import "./App.css";
 
 const COLORES = ["red", "green", "blue", "pink", "yellow"];
@@ -34,6 +34,25 @@ export default function App() {
 
   const backgroundColor = COLORES[currentIndex];
 
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "ArrowRight") {
+        setCurrentIndex((prev) => (prev + 1) % COLORES.length);
+      } else if (e.key === "ArrowLeft") {
+        setCurrentIndex((prev) => (prev - 1 + COLORES.length) % COLORES.length);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // Copy color to clipboard
+  const copyColor = () => {
+    navigator.clipboard.writeText(backgroundColor);
+    alert(`Color ${backgroundColor} copiado al portapapeles`);
+  };
+
   return (
     <div
       className="App"
@@ -50,7 +69,14 @@ export default function App() {
       <h1 style={{ color: "#fff", textShadow: "1px 1px 4px rgba(0,0,0,0.4)" }}>
         Selector de Colores
       </h1>
-      <h2 style={{ color: "#fff" }}>Color actual: {backgroundColor}</h2>
+
+      <h2
+        style={{ color: "#fff", cursor: "pointer" }}
+        onClick={copyColor}
+        title="Click para copiar el color"
+      >
+        Color actual: {backgroundColor}
+      </h2>
 
       <div className="button-group" style={{ display: "flex", flexWrap: "wrap" }}>
         {COLORES.map((color, index) => (
@@ -63,6 +89,20 @@ export default function App() {
           />
         ))}
       </div>
+
+      <button
+        onClick={() => setCurrentIndex(Math.floor(Math.random() * COLORES.length))}
+        style={{
+          backgroundColor: "#222",
+          color: "#fff",
+          padding: "0.5rem 1rem",
+          marginTop: "1rem",
+          borderRadius: "8px",
+          cursor: "pointer",
+        }}
+      >
+        Color Aleatorio 🎲
+      </button>
     </div>
   );
 }
