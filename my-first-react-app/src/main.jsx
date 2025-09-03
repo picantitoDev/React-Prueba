@@ -1,12 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './index.css'; // optional if using Tailwind or your own styles
-import Greeting from './Greeting'
-import Navbar from './Navbar'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Post from "./Post";
+import Counter from "./Counter"
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <Counter></Counter>
+    <Post></Post>
   </React.StrictMode>
 );
