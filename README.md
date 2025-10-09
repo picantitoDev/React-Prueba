@@ -1,1 +1,0 @@
-This project will help me learn this overrated framework for once and for all. Update, I'm not Learning much :(
